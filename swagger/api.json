@@ -1,0 +1,127 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Hello Swagger"
+    },
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "securityDefinitions": {},
+    "produces": [
+        "application/json"
+    ],
+    "security": [],
+    "paths": {
+        "/hello/{firstName}/{lastName}": {
+            "get": {
+                "description": "Say hello",
+                "x-swagger-router-controller": "user",
+                "operationId": "sayHello",
+                "tags": [
+                    "user"
+                ],
+                "security": [],
+                "parameters": [
+                    {
+                        "name": "firstName",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "firstName"
+                    },
+                    {
+                        "name": "lastName",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "firstName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Say hello result",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "description": "Create a new user",
+                "x-swagger-router-controller": "user",
+                "operationId": "createUser",
+                "tags": [
+                    "user"
+                ],
+                "security": [],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": ["firstName", "lastName"],
+                            "properties": {
+                                "firstName": {
+                                    "type": "string"
+                                },
+                                "lastName": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Say hello result",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Result": {
+            "type": "object",
+            "required": [
+                "code",
+                "message",
+                "data",
+                "success"
+            ],
+            "properties": {
+                "code": {
+                    "type": "number"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}
